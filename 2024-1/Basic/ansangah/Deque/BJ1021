@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(void)
+{
+    int n, m ,a;
+    int index;
+    cin >> n >> m;
+
+    deque<int> d;
+    int cnt = 0;
+
+    for (int i = 1; i <= n; i++)
+        d.push_back(i);
+
+    while (m--) {
+        cin >> a;
+
+        for (int i = 0; i < d.size(); i++) {
+            if (d[i] == a) {
+                index = i;
+                break;
+            }
+        }
+        if (index <= d.size() / 2) {
+            while (1) {
+                if (d.front() == a) {
+                    d.pop_front();
+                    break;
+                }
+                ++cnt;
+                d.push_back(d.front());
+                d.pop_front();
+            }
+        }
+        else { 
+            while (1) {
+                if (d.front() == a) {
+                    d.pop_front();
+                    break;
+                }
+                ++cnt;
+                d.push_front(d.back());
+                d.pop_back();
+            }
+        }
+    }
+    cout << cnt << '\n';
+
+    return 0;
+}
